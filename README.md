@@ -1,37 +1,82 @@
-## Welcome to GitHub Pages
+# DOAN PHUC KHOA S3927381
+<html>
+    <head>
+        <title>Headlines</title>
+        <style>
+          html{
+            font-family: "Helvetica";
+            background: white;
+          }
 
-You can use the [editor on GitHub](https://github.com/kdoan13/Introduction-to-science/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+          body{
+            background: lightgrey;
+            max-width: 900px;
+            margin: 0 auto;
+          }
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+          #header{
+            padding-top: 5;
+            background: lightsteelblue;
+          }
+          #inner-header {
+            padding-left: 10;
+          }
+          #main{
+            padding-left: 10;
+          }
+        </style>
+    </head>
+    <body>
+      <div id="header">
+        <div id="inner-header">
+        <h1>Headlines</h1>
+        <p>Headlines. Currency. Weather</p>
+      </div>
+        <hr />
+      </div>
+      <div id="main">  
+        <h2>Current weather</h2>
 
-### Markdown
+        <form>
+          <input type="text" name="city" placeholder="weather search">
+          <input type="submit" value="Submit">
+        </form>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+        <p>City: <b>{{weather.city}}, {{weather.country}}</b></p>
+        <p>{{weather.description}} |{{weather.temperature}}&#8451</p>
 
-```markdown
-Syntax highlighted code block
+        <h2>Currency</h2>
 
-# Header 1
-## Header 2
-### Header 3
+        <form>
+            from: <select name="currency_from">
+                    {% for currency in currencies %}
+                        <option value="{{currency}}" {{'selected="selected"' if currency_from==currency}}>{{currency}}</option>
+                    {% endfor %}
+                  </select>
 
-- Bulleted
-- List
+             to: <select name="currency_to">
+                    {% for currency in currencies %}
+                        <option value="{{currency}}" {{'selected="selected"' if currency_to==currency}}>{{currency}}</option>
+                    {% endfor %}
+                  </select>
+                 <input type="submit" value="Submit">
+        </form>
 
-1. Numbered
-2. List
+        1 {{currency_from}} = {{currency_to}} {{rate}}
 
-**Bold** and _Italic_ and `Code` text
+        <h2>Headlines</h2>
+        <form>
+          <input type="text" name="query" placeholder="search" />
+          <input type="submit" value="Submit" />
+        </form>
 
-[Link](url) and ![Image](src)
-```
+        {% for article in articles %}
+            <b><a href="{{article.link}}">{{article.title}}</a></b><br />
+            <i>{{article.published}}</i><br />
+            <p>{{article.summary}}</p> 
+            <hr />
+        {% endfor %}
+     </div>
+    </body>
+</html>
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kdoan13/Introduction-to-science/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
